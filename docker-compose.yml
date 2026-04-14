@@ -1,0 +1,35 @@
+services:
+  mcp-searxng:
+    image: ghcr.io/mouyase/mcp-searxng:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - SEARXNG_URL=${SEARXNG_URL:-http://searxng:8080}
+      - MCP_API_KEY=${MCP_API_KEY:-}
+      - PORT=3000
+    depends_on:
+      searxng:
+        condition: service_healthy
+    restart: unless-stopped
+
+  searxng:
+    image: searxng/searxng:latest
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    volumes:
+      - searxng-data:/etc/searxng
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  searxng-data:

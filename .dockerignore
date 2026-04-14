@@ -1,0 +1,14 @@
+node_modules/
+dist/
+__test__/
+.git/
+.github/
+.env
+.env.local
+.env.*.local
+.oxlintrc.json
+.oxfmtrc.json
+*.md
+*.test.ts
+*.spec.ts
+.DS_Store

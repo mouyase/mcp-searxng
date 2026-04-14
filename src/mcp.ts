@@ -9,7 +9,7 @@ export function createMcpServer() {
   });
 
   server.tool(
-    "searxng_search",
+    "search",
     "Search the web using SearXNG meta-search engine. Returns search results with titles, URLs, and content snippets.",
     {
       query: z.string().describe("Search query string"),

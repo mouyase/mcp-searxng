@@ -8,9 +8,9 @@ describe("createMcpServer", () => {
     expect(typeof server).toBe("object");
   });
 
-  test("registers the searxng_search tool", () => {
+  test("registers the search tool", () => {
     const server = createMcpServer();
     const registeredTools = Reflect.get(server, "_registeredTools") as Record<string, unknown>;
-    expect(Object.hasOwn(registeredTools, "searxng_search")).toBe(true);
+    expect(Object.hasOwn(registeredTools, "search")).toBe(true);
   });
 });

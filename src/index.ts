@@ -25,16 +25,15 @@ app.use(
 
 app.use("*", bearerAuth);
 
-const mcpServer = createMcpServer();
-
 app.all("/mcp", async (c) => {
+  const server = createMcpServer();
   const transport = new WebStandardStreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
     enableJsonResponse: true,
   });
-  await mcpServer.connect(transport);
+  await server.connect(transport);
   const response = await transport.handleRequest(c.req.raw);
-  await transport.close();
+  await server.close();
   return response;
 });
 

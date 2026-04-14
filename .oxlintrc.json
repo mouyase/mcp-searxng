@@ -1,0 +1,61 @@
+{
+  "plugins": ["typescript", "import", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "warn",
+    "style": "warn",
+    "nursery": "off"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-debugger": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "eqeqeq": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "@typescript-eslint/await-thenable": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "id-length": "off",
+    "no-magic-numbers": "off",
+    "sort-keys": "off",
+    "sort-imports": "off",
+    "func-style": "off",
+    "no-named-export": "off",
+    "prefer-default-export": "off",
+    "require-await": "off",
+    "no-null": "off",
+    "numeric-separators-style": "off",
+    "prefer-code-point": "off",
+    "consistent-type-specifier-style": "off",
+    "max-lines-per-function": "off",
+    "max-statements": "off",
+    "no-ternary": "off",
+    "prefer-template": "off",
+    "init-declarations": "off",
+    "group-exports": "off",
+    "no-unnecessary-await": "off",
+    "no-negated-condition": "off",
+    "prefer-type-error": "off",
+    "prefer-readonly-parameter-types": "off",
+    "strict-boolean-expressions": "off",
+    "no-unsafe-type-assertion": "off",
+    "no-base-to-string": "off",
+    "no-floating-promises": "off",
+    "no-deprecated": "off",
+    "prefer-response-static-json": "off"
+  },
+  "ignorePatterns": ["dist/**", "node_modules/**", "*.d.ts"],
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
+      "rules": {
+        "no-console": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}

@@ -10,7 +10,7 @@ COPY src/ src/
 RUN bun build --compile --minify src/index.ts --outfile server
 
 # ---- release ----
-FROM alpine:3.21
+FROM alpine:3.23
 RUN apk add --no-cache libgcc libstdc++ \
     && adduser -D -s /bin/sh app
 WORKDIR /app

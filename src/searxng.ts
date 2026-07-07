@@ -20,10 +20,8 @@ export interface SearXNGResult {
 
 export interface SearXNGResponse {
   query: string;
-  number_of_results: number;
+  resultCount: number;
   results: SearXNGResult[];
-  suggestions: string[];
-  unresponsive_engines: string[];
 }
 
 export async function searchSearXNG(params: SearXNGSearchParams): Promise<SearXNGResponse> {
@@ -85,10 +83,6 @@ export async function searchSearXNG(params: SearXNGSearchParams): Promise<SearXN
     throw new Error("SearXNG response is missing or has invalid 'query' field");
   }
 
-  if (typeof raw.number_of_results !== "number") {
-    throw new Error("SearXNG response is missing or has invalid 'number_of_results' field");
-  }
-
   if (!Array.isArray(raw.results)) {
     throw new Error("SearXNG response is missing or has invalid 'results' field");
   }
@@ -146,31 +140,9 @@ export async function searchSearXNG(params: SearXNGSearchParams): Promise<SearXN
     };
   });
 
-  const suggestions: string[] = [];
-
-  if (Array.isArray(raw.suggestions)) {
-    for (const s of raw.suggestions) {
-      if (typeof s === "string") {
-        suggestions.push(s);
-      }
-    }
-  }
-
-  const unresponsive_engines: string[] = [];
-
-  if (Array.isArray(raw.unresponsive_engines)) {
-    for (const u of raw.unresponsive_engines) {
-      if (typeof u === "string") {
-        unresponsive_engines.push(u);
-      }
-    }
-  }
-
   return {
     query: raw.query,
-    number_of_results: raw.number_of_results,
+    resultCount: results.length,
     results,
-    suggestions,
-    unresponsive_engines,
   };
 }

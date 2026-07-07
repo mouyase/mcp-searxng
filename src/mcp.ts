@@ -39,7 +39,7 @@ export function createMcpServer() {
 
         const lines: string[] = [
           `Query: ${response.query}`,
-          `Number of results: ${response.number_of_results}`,
+          `Number of results: ${response.resultCount}`,
           "",
           "--- Results ---",
           "",
